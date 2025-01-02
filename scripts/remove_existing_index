@@ -1,0 +1,4 @@
+#!/bin/bash
+if [ -f /usr/share/nginx/html/index.html ]; then
+  rm -rf /usr/share/nginx/html/index.html
+fi
