@@ -1,20 +1,38 @@
+# 定义AppSpec文件的版本
 version: 0.0
+# 指定目标操作系统为Linux
 os: linux
 files:
+  # 定义源文件和目标文件的映射关系
   - source: /index.html
+    # 指定目标文件的路径
     destination: /usr/share/nginx/html/
 hooks:
+  # 在安装前执行的钩子
   BeforeInstall:
+    # 执行安装应用的脚本
     - location: scripts/install_app
+      # 设置脚本执行的超时时间为60秒
       timeout: 60
+      # 指定脚本以root用户身份运行
       runas: root
+    # 执行删除现有index文件的脚本
     - location: scripts/remove_existing_index
+      # 设置脚本执行的超时时间为60秒
       timeout: 60
+      # 指定脚本以root用户身份运行
       runas: root
+    # 执行启动服务器的脚本
     - location: scripts/start_server
+      # 设置脚本执行的超时时间为60秒
       timeout: 60
+      # 指定脚本以root用户身份运行
       runas: root
+  # 在应用停止时执行的钩子
   ApplicationStop:
+    # 执行停止服务器的脚本
     - location: scripts/stop_server
+      # 设置脚本执行的超时时间为60秒
       timeout: 60
+      # 指定脚本以root用户身份运行
       runas: root
